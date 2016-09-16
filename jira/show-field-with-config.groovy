@@ -60,7 +60,8 @@ class YamlGenerator {
             result.append("  type: DatePicker \n\n")
         	return result
         }
-        return customField.getName() + " " + customField.getCustomFieldType().getClass()
+        result.append("  type: " + customField.getCustomFieldType().getClass() + "\n\n")
+        return result
     }
     
     private FieldConfig getFieldConfig(CustomField customField) {

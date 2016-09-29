@@ -41,7 +41,9 @@ class YamlGenerator {
             def customFieldConfig = getFieldConfig(customField);
             def options = optionsManager.getOptions(customFieldConfig);
 
-            result.append("  type: SelectList \n  values: \n")
+            result.append("  type: SelectList \n")
+            result.append("  description: \"${customField.description}\" \n")
+            result.append("  values: \n")
 
             options.each { option ->
                 result.append("  - " + option.toString() + "\n")
@@ -49,15 +51,20 @@ class YamlGenerator {
             return result + "\n"
         }
         if (customField.getCustomFieldType() instanceof RenderableTextCFType) {
-            result.append("  type: TextField \n\n")
+            result.append("  type: TextField \n")
+            result.append("  description: \"${customField.description}\" \n\n")
+            
         	return result
         }
         if (customField.getCustomFieldType() instanceof TextAreaCFType) {
-            result.append("  type: TextArea \n\n")
+            result.append("  type: TextArea \n")
+            result.append("  description: \"${customField.description}\" \n\n")
+
         	return result
         }
         if (customField.getCustomFieldType() instanceof DateCFType) {
-            result.append("  type: DatePicker \n\n")
+            result.append("  type: DatePicker \n")
+        	result.append("  description: \"${customField.description}\" \n\n")
         	return result
         }
         result.append("  type: " + customField.getCustomFieldType().getClass() + "\n\n")

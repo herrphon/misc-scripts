@@ -1,0 +1,8 @@
+version: "2"
+
+services:
+  mvn:
+    image: maven
+    volumes:
+    - ./tmp:/tmp
+    command: mvn dependency:get -DrepoUrl=http://... -Dartifact=tld.domain:name:1.2.3:war  -Ddest=/tmp/artifact-1.2.3.war
